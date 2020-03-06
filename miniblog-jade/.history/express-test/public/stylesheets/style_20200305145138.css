@@ -1,0 +1,9 @@
+/* public是前端可以 访问到的静态文件，express中的文件除public以外都不能被前端 访问到 */
+body {
+  /* padding: 50px; */
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+/* 
+a {
+  color: #00B7FF;
+} */

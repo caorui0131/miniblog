@@ -1,0 +1,10 @@
+extends layout
+block css
+  style(type="text/css").
+block content
+  include includes/header.jade
+  h2 文章管理
+  input(type="submit" value="新建博客")
+  div 
+  script.
+    $(".username").hide();

@@ -1,0 +1,18 @@
+extends layout
+block css
+    style(type="text/css").
+        .logindiv{height: 400px;width: 350px;background:ffffff; 
+        position: absolute;left: 50%;top: 50%;margin:-250px 0 0 -150px;z-index: 2;
+        box-shadow: darkgrey 10px 10px 30px 5px ;}
+        .dl{text-align: center;top: 20px;position: absolute;left: 44%;}
+        .ipt{position: absolute;top:40%;left: 28%;}
+        .loginbtn{width: 130px;background-color: #868080;}
+        .username{float:left;}
+block content
+    include includes/header.jade
+    div.logindiv
+        p.dl 登录
+        div.ipt
+            input(type="text" class="username" placeholder="用户名")
+            input(type="password" class="password" placeholder="密码")
+            input(class="loginbtn" type="submit" value="登录")

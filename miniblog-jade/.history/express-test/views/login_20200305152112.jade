@@ -1,0 +1,11 @@
+extends layout
+block css
+
+block content
+    include includes/header.jade
+    div.logindiv
+        p.dl 登录
+        div.ipt
+            input(type="text" class="username" placeholder="用户名")
+            input(type="password" class="password" placeholder="密码")
+            input(lass="loginbtn" type="submit" value="登录" style="width: 130px;background-color: #868080;)

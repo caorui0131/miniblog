@@ -1,0 +1,14 @@
+extends layout
+block css
+  style(type="text/css").
+    //- .content{rows="40" cols="20"}
+block content
+  include includes/header.jade
+  h2 #{bolgtitle}
+  textarea.content #{bolgcontent}
+  script.
+    $(".username").hide();
+    document.querySelector("textarea").addEventListener("intextareaput",function(){
+    this.style.width="0px";//让 scrollWidth 获取最小值，达到回缩的效果
+    this.style.width=this.scrollWidth+"px";});
+

@@ -1,0 +1,13 @@
+extends layout
+block css
+  style(type="text/css").
+    .newbtn{display:block;}
+    .bloglist{display:block;height:100%;border:1px solid #999999;float:left;width:100%;padding:10px;margin:10px 0;}
+block content
+  include includes/header.jade
+  h2 文章管理
+  input.newbtn(type="submit" value="新建博客")
+  div.bloglist
+    li 1
+  script.
+    $(".username").hide();

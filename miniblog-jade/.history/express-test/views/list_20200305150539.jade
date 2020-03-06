@@ -1,0 +1,19 @@
+//- extends layout
+//- block css
+//- block content
+//-   h1= title
+//-   input(type="submit" value="新建博客")
+//-   //- button(type="submit" value="新建博客") 新建博客
+//-   h2 文章管理
+//-   script.
+//-     $(".username").hide();
+
+extends layout
+block css
+  style(type="text/css").
+block content
+  include includes/header.jade
+  h2 文章管理
+  input(type="submit" value="新建博客")
+  script.
+    $(".username").hide();

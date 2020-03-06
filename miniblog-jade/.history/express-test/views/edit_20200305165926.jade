@@ -1,0 +1,36 @@
+extends layout
+block css
+  style(type="text/css").
+    .comments {
+      width:100%;/*自动适应父布局宽度*/
+      overflow:auto;
+      word-break:break-all;
+      /*在ie中解决断行问题(防止自动变为在一行显示，主要解决ie兼容问题，ie8中当设宽度为100%时，文本域类容超过一行时，
+      当我们双击文本内容就会自动变为一行显示，所以只能用ie的专有断行属性“word-break或word-wrap”控制其断行)*/
+      }
+    .bloglistdiv{border-style:solid;border-color:red;height:100%;width:29%;float:left;display:block;}
+    .contentdiv{border-style:solid;border-color:black;height:100%;width:69%;float:right;}
+    .contentbtn{float:right;height:14px;}
+    .check1，.check2
+block content
+    include includes/header.jade
+    div.bloglistdiv
+        input(type="submit" value="新建博客")
+        div.check
+            div.check1 已发布
+            div.check2 未发布
+        div.bloglist
+    div.contentdiv
+        div.contentbtn
+            input(type="submit" value="保存")
+            input(type="submit" value="发布")
+            input(type="submit" value="删除")
+            input(type="submit" value="下撤")
+        h2 #{bolgtitle}
+        form(METHOD=POST ACTION= " ")
+        textarea(class="comments" rows="38" cols="10") #{bolgcontent}
+    script.
+        $(".username").hide();
+    
+    
+

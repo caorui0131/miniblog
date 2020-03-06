@@ -1,0 +1,23 @@
+extends layout
+block css
+    style.
+        .logindiv{height: 400px;width: 350px;background-color: #ffffff; 
+             position: absolute;
+             left: 50%;
+             top: 50%;
+             margin:-250px 0 0 -150px;z-index: 2;
+             box-shadow: darkgrey 10px 10px 30px 5px ;display: none;}
+             
+block content
+    div.logindiv
+  <div class="logindiv"  
+        style="">
+        <!-- <p class="closebtn" style="position: absolute;left: 94%;">x</p> -->
+        <p style="text-align: center;top: 20px;position: absolute;left: 44%;">登录</p>
+        <div style="position: absolute;top:40%;left: 28%;">
+            <input type="text" class="username" placeholder="用户名"/>
+            <input type="password" class="password" placeholder="密码"/>
+            <input class="loginbtn" type="submit" value="登录" style="width: 130px;background-color: #868080;"></input>
+            <!-- <button style="position: absolute;">登录</button> -->
+        </div>
+    </div>

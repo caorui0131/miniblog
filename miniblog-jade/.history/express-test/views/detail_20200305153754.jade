@@ -1,0 +1,12 @@
+extends layout
+block css
+  style(type="text/css").
+     width="100px" height:"500px">
+在w3school，你可以找到你所需要的所有的网站建设教程。
+</textarea>
+block content
+  include includes/header.jade
+  h2 #{title}
+  textarea #{content}
+  script.
+    $(".username").hide();

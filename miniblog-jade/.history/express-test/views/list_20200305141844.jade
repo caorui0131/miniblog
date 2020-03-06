@@ -1,0 +1,25 @@
+//- extends layout
+//- block css
+//- block content
+//-   h1= title
+//-   input(type="submit" value="新建博客")
+//-   //- button(type="submit" value="新建博客") 新建博客
+//-   h2 文章管理
+//-   script.
+//-     $(".username").hide();
+
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/stylesheets/jquery.js")
+    script(src="/stylesheets/jquery-ui.min.js")
+    style(type="text/css" ).
+      .login{color:red}
+  body
+    //- div 页头
+    include includes/header.jade
+    h2 文章管理
+    input(type="submit" value="新建博客")
+    script.
+      $(".username").hide();

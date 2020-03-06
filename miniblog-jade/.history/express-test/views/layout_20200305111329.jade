@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(rel="jquery.js", href='/stylesheets/jquery.js')
+    script(rel="jquery-ui.min.js", href='/stylesheets/jquery-ui.min.js')
+    div.header
+      title= title
+      p.login 登录
+      p.username(display="none") aa
+    style
+      .login
+    block css
+  body
+    //- div 页头
+    block content
+    //- div 页尾

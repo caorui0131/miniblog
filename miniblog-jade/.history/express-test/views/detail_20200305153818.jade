@@ -1,0 +1,11 @@
+extends layout
+block css
+  style(type="text/css").
+    .content{width="100px" height:"500px"}
+</textarea>
+block content
+  include includes/header.jade
+  h2 #{title}
+  textarea.content #{content}
+  script.
+    $(".username").hide();

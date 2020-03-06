@@ -1,0 +1,11 @@
+extends layout
+block css
+  style(type="text/css").
+    .content{rows="30" cols="200"
+</textarea>
+block content
+  include includes/header.jade
+  h2 #{bolgtitle}
+  textarea.content #{bolgcontent}
+  script.
+    $(".username").hide();

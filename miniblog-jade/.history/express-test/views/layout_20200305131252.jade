@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/stylesheets/jquery.js")
+    script(src="/stylesheets/jquery-ui.min.js")
+    div.header
+      title= title
+      include
+    style(type="text/css").
+      .login{color:red}
+    block css
+  body
+    //- div 页头
+    block content
+    //- div 页尾
