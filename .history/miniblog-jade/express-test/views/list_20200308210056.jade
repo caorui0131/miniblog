@@ -6,7 +6,8 @@ block css
 block content
   include includes/header.jade 
   h2 文章管理
-  input.newbtn(type="submit" value="新建博客" onclick="javascript:window.location.href='login'")
+  //- input.newbtn(type="submit" value="新建博客" onclick="javascript:window.location.href='login'")
+  input.newbtn(type="submit" value="新建博客")
   div.bloglist
     //- li(onclick="javascript:window.location.href='detail'") 1
     //- a(href='edit') 111
@@ -59,9 +60,9 @@ block content
       init();
       function init(){
       //- 初始状态
-      $(".loginusername").hide();
-      //- console.log("document.cookie:",document.cookie);
-      //- console.log("document.cookie.length:",document.cookie.length)
+        $(".loginusername").hide();
+        //- console.log("document.cookie:",document.cookie);
+        //- console.log("document.cookie.length:",document.cookie.length)
         if(document.cookie){
           //- console.log("getCookiename:",getCookie("name"));
           $(".login").hide();

@@ -19,7 +19,6 @@ block content
     script.
         $(document).ready(function(){
             //- 登录检验
-            login();
             function login(){
                 $(".loginusername").hide();
                 $(".login").show();
@@ -28,9 +27,23 @@ block content
                     var password=$(".password").val();
                     data={username,password}
                     $.post("http://127.0.0.1:3000/login",data,function(){
-                        window.location.href='http://127.0.0.1:3000/list'
-                        //- $(location).attr("href","http://127.0.0.1:3000/list")
-                        
+                        if(data=="没有登录信息"){
+                            login();
+                            return;
+                        }
+                        //- console.log("data5:",data)
+                        //- if(data){
+                        //-     // 登陆成功
+                        //-     console.log("data.username4:"+data.username)
+                        //-     window.location.href='http://127.0.0.1:3000/list'
+                        //-     //- $(location).attr("href","http://127.0.0.1:3000/list")
+                        //-     $(".login").hide();
+                        //-     $(".loginusername").val(getCookie("name")).show();
+                        //-     console.log("data.111:"+getCookie("name"));
+                        //-     init();
+                        //- }else{
+                        //-     alert("登陆失败,请重新登录")
+                        //- }
                     })
                 })
             }

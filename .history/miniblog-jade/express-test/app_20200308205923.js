@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/users');
+var loRouter = require('./routes/users');
 // 将express()框架赋给app变量
 var app = express();
 

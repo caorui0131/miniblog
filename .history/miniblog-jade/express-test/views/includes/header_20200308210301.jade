@@ -31,7 +31,7 @@ script.
             $.post("http://127.0.0.1:3000/logout",function(){
                 // app.js验证是否为登录状态中间件
                 //- if(data=="没有登录信息"){
-                    //- login();
+                //-     login();
                 //-     return;
                 //- }
                 location.reload();
@@ -75,14 +75,14 @@ script.
             date.setTime(date.getTime()-10000); 
             document.cookie=name+"=v; expires="+date.toGMTString(); 
         }
+        //- 初始状态
+        $(".loginusername").hide();
         // deleteCookie("name1");
         //- 判断默认是否为登录状态
         init();
         function init(){
-        //- 初始状态
-            $(".loginusername").hide();
-            //- console.log("document.cookie:",document.cookie);
-            //- console.log("document.cookie.length:",document.cookie.length)
+            console.log("document.cookie:",document.cookie);
+            console.log("document.cookie.length:",document.cookie.length)
             if(document.cookie){
             //- console.log("getCookiename:",getCookie("name"));
                 $(".login").hide();
@@ -90,7 +90,12 @@ script.
             }else{
 
             }
+            $.get("http://127.0.0.1:8080/api/todo/loginlist",function(data){
+                // app.js验证是否为登录状态中间件
+                if(data=="没有登录信息"){
+                    login();
+                    return;
+                }
+            })
         }
-        
-        
     })

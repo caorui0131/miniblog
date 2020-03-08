@@ -17,8 +17,8 @@ block content
   script.
     $(document).ready(function(){
       // 调用设置cookie、取cookie函数
-      //- setCookie("name","name1","1")
-      //- setCookie("name2","name2","1")
+      setCookie("name","name1","1")
+      setCookie("name2","name2","1")
       // setCookie("name2","value2")
       // setCookie("name3","value3")
       console.log("document.cookie:",document.cookie)
@@ -58,7 +58,7 @@ block content
       //- 判断默认是否为登录状态
       init();
       function init(){
-      //- 初始状态
+        //- 初始状态
       $(".loginusername").hide();
       //- console.log("document.cookie:",document.cookie);
       //- console.log("document.cookie.length:",document.cookie.length)

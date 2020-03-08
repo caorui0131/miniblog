@@ -19,10 +19,9 @@ block content
     script.
         $(document).ready(function(){
             //- 登录检验
-            login();
             function login(){
                 $(".loginusername").hide();
-                $(".login").show();
+                $(".login").hide();
                 $(".loginbtn").click(function(){
                     var username=$(".username").val();
                     var password=$(".password").val();
@@ -30,7 +29,6 @@ block content
                     $.post("http://127.0.0.1:3000/login",data,function(){
                         window.location.href='http://127.0.0.1:3000/list'
                         //- $(location).attr("href","http://127.0.0.1:3000/list")
-                        
                     })
                 })
             }

@@ -1,7 +1,7 @@
 div.header
     h1.title1(onclick="javascript:window.location.href='list'") #{title}
     p.login(onclick="javascript:window.location.href='login'") 登录
-    p.loginusername() #{username}
+    p.loginusername(display="none") #{username}
     //-  <!-- 退出登录 -->
     div.loginhide
         input.logoutbtn(type="submit" value="退出登录" )
@@ -31,7 +31,7 @@ script.
             $.post("http://127.0.0.1:3000/logout",function(){
                 // app.js验证是否为登录状态中间件
                 //- if(data=="没有登录信息"){
-                    //- login();
+                //-     login();
                 //-     return;
                 //- }
                 location.reload();
@@ -85,12 +85,10 @@ script.
             //- console.log("document.cookie.length:",document.cookie.length)
             if(document.cookie){
             //- console.log("getCookiename:",getCookie("name"));
-                $(".login").hide();
-                $(".loginusername").val(getCookie("name")).show();
+            $(".login").hide();
+            $(".loginusername").val(getCookie("name")).show();
             }else{
 
             }
         }
         
-        
-    })
