@@ -1,0 +1,41 @@
+extends layout
+block css
+  style(type="text/css").
+    .newbtn{display:block;}
+    .bloglist{display:block;height:100%;border:1px solid #999999;float:left;width:100%;padding:10px;margin:10px 0;}
+block content
+  include includes/header.jade 
+  h2 文章管理
+  input.newbtn(type="submit" value="新建博客" onclick="javascript:window.location.href='login'")
+  div.bloglist
+    //- li(onclick="javascript:window.location.href='detail'") 1
+    //- a(href='edit') 111
+    ul
+      each val in result
+        li
+          a(href="/detail")=val.id+"."+val.title
+  script.
+    $(document).ready(function(){
+      $(".username").hide();
+      //- $.get("http://127.0.0.1:3000/listget",function(data){
+      //-   //- alert(1);
+      //-   console.log("init data:",data);
+      //-   console.log("data.length:",data.length);
+      //-   for(i=0;i<data.length;i++){
+      //-     //- var $li=$('<li class="bloglistli" data-id="'+data[i].id+'">'+data[i].title+'</li>');
+      //-     var $li=$(`<li class="bloglistli"  data-id="`+data[i].id+`"><a href='detail'>`+data[i].title+'</a></li>');
+      //-     //- var $li=$(`<li class="bloglistli"  onclick="javascript:window.location.href='detail'" >`+data[i].title+'</li>')
+      //-     $(".bloglist").append($li);
+      //-     $(".bloglistli").click(function(){
+      //-       var thisid=$(this).attr('data-id')
+      //-       var data={thisid}
+      //-       console.log("thisid:",thisid);
+      //-       $.get("http://127.0.0.1:3000/detailget",data,function(data){
+      //-         //- console.log("detail:",data[0].content);
+      //-       })
+      //-     })
+
+      //-   }
+      //- })
+      
+    })

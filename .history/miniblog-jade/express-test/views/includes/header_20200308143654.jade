@@ -1,0 +1,26 @@
+div.header
+    h1.title1(onclick="javascript:window.location.href='list'") #{title}
+    p.login(onclick="javascript:window.location.href='login'") 登录
+    p.loginusername(display="none") #{username}
+    //-  <!-- 退出登录 -->
+    div.loginhide(style="z-index: 3;height: 120px;width: 100px;background-color: #ffffff;position: absolute;top:5%;right:5%;display: none;")
+        input.logoutbtn(type="submit" value="退出登录" style="width: 80px;background-color: #868080;position: relative;top:20%;left:15%;")
+style.
+    html,body{height:100%;}
+    .header{height:50px;background:rgba(47,47,47,0.98);padding:0 auto;margin:0 auto;}
+    .title1{float:left;text-align:center;vertical-align: middle;color:white;margin:0 10px;}
+    .login,.loginusername{float:right;color:white;margin-right:10px;}
+    .loginusername{}
+script.
+    $(".loginusername").mouseover(function(){
+            $('.loginhide').show();
+        })
+        $(".loginusername").mouseout(function(){
+            $('.loginhide').hide();
+        })
+        $(".loginhide").mouseover(function(){
+            $('.loginhide').show();
+        })
+        $(".loginhide").mouseout(function(){
+            $('.loginhide').hide();
+        })

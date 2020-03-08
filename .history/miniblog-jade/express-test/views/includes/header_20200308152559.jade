@@ -1,0 +1,38 @@
+div.header
+    h1.title1(onclick="javascript:window.location.href='list'") #{title}
+    p.login(onclick="javascript:window.location.href='login'") 登录
+    p.loginusername(display="none") #{username}
+    //-  <!-- 退出登录 -->
+    div.loginhide
+        input.logoutbtn(type="submit" value="退出登录" )
+style.
+    html,body{height:100%;}
+    .header{height:50px;background:rgba(47,47,47,0.98);padding:0 auto;margin:0 auto;}
+    .title1{float:left;text-align:center;vertical-align: middle;color:white;margin:0 10px;}
+    .login,.loginusername{float:right;color:white;margin-right:10px;height:20px;width}
+    .loginhide{box-shadow: darkgrey 10px 10px 30px 5px ;z-index: 3;height: 120px;width: 100px;background-color: #ffffff;position: absolute;top:6%;right:1.5%;display: none;}
+    .logoutbtn{width: 80px;background-color: #868080;position: relative;top:20%;left:15%;}
+script.
+    $(".loginusername").mouseover(function(){
+        $('.loginhide').show();
+    })
+    $(".loginusername").mouseout(function(){
+        $('.loginhide').hide();
+    })
+    $(".loginhide").mouseover(function(){
+        $('.loginhide').show();
+    })
+    $(".loginhide").mouseout(function(){
+        $('.loginhide').hide();
+    })
+    $(".logoutbtn").click(function(){
+        //deleteCookie('name');
+        $.post("http://127.0.0.1:3000/logout",function(){
+            // app.js验证是否为登录状态中间件
+            //- if(data=="没有登录信息"){
+            //-     login();
+            //-     return;
+            //- }
+            location.reload();
+        })
+    })

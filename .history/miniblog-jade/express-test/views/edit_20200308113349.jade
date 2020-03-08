@@ -1,0 +1,170 @@
+extends layout
+block css
+  style(type="text/css").
+    .comments {
+      width:calc(100% - 6px);/*自动适应父布局宽度*/
+      height:calc(100% - 70px);
+      overflow:auto;
+      word-break:break-all;
+      margin:0;
+      /*在ie中解决断行问题(防止自动变为在一行显示，主要解决ie兼容问题，ie8中当设宽度为100%时，文本域类容超过一行时，
+      当我们双击文本内容就会自动变为一行显示，所以只能用ie的专有断行属性“word-break或word-wrap”控制其断行)*/
+    }
+    html,body{height:100%;}
+    .bloglistdiv{height:100%;border:1px solid #999999;float:left;display:block;min-width:210px;min-height:100%;}
+    .contentdiv{border:1px solid #999999;height:100%;width:calc(100% - 240px);float:right;position:absolute;left:230px;}
+    .contentbtn{float:right;height:14px;position:relative;height:20px;width:100%;margin:4px 2px;}
+    /*.save{top:6px;right:3px;float:right;}*/
+    //- .save{top:-723px;right:-334px;position: relative;}position: fixed
+    .save{top:-723px;right:-334px;position: relative;}position: fixed
+    .publish{top:1px;float:right;}
+    .unpublish{top:1px;float:right;}
+    .delete{top:1px;float:right;}
+    .check1,.check2{border:1px solid #999999;float:left;margin:10px 0px;padding:2px 6px;width:43%;}
+    .formtitle{width:calc(100% - 6px);border:1px solid #999999;}
+block content
+    include includes/header.jade
+    div.bloglistdiv
+        input.newblog(type="submit" value="新建博客")
+        div.check
+            div.check1 未发布
+            div.check2 已发布
+        //- div.bloglist1
+            //- li 1
+        //- div.bloglist2
+            //- li 2
+        //- 显示bloglist
+        ul
+            each val in result
+                case val.ispublish
+                    when 0
+                        div.bloglist1
+                            li.bloglist1li(content=val.content title=val.title id=val.id ispublish=val.ispublish)=val.id+"."+val.title
+                                //- a
+                    when 1
+                        div.bloglist2
+                            li.bloglist2li(content=val.content title=val.content id=val.id ispublish=val.ispublish)=val.id+"."+val.title
+                                //- a
+        //- ul
+        //-     each val in result
+        //-         li 
+                    a=val.id+"."+val.title
+        
+    div.contentdiv
+        div.contentbtn
+            //- input.save(type="submit" value="保存")
+            input.publish(type="submit" value="发布")
+            input.delete(type="submit" value="删除")
+            input.unpublish(type="submit" value="下撤")
+        h2 #{bolgtitle}
+        form(action="/edit" method="post" id="editblogform")
+            p.formid id：
+            input.formid(type="text" name="id")
+            p 标题：
+            input.formtitle(type="text" name="title")
+            p 正文：
+            textarea.comments(name="content" rows="38" cols="10" fowm="editblogform") #{bolgcontent}
+            input.save(type="submit" value="保存")
+    script.
+        $(document).ready(function(){
+            //- check初始状态
+            $(".unpublish").hide();
+            $(".save,.publish,.delete").show();
+            $(".formid").hide();
+            $(".check1").css("background","#999999");
+            $(".username").hide();
+            $(".bloglist2").hide();
+            $(".bloglist1").show();
+            //- 点击check1未发布
+            $(".check1").click(function(){
+                $(".check2").css("background","#ffffff");
+                $(".check1").css("background","#999999");
+                $(".bloglist1").show();
+                $(".bloglist2").hide();
+                $(".comments").val($(".bloglist1").children().first().attr("content"));
+                $(".formtitle").val($(".bloglist1 li").eq(0).attr("title"));
+                $(".formid").val($(".bloglist1 li").eq(0).attr("id"));
+                $(".unpublish").hide();
+                $(".save,.publish,.delete").show();
+            })
+            //- 点击check2已发布
+            $(".check2").click(function(){
+                $(".check1").css("background","#ffffff");
+                $(".check2").css("background","#999999");
+                $(".bloglist2").show();
+                $(".bloglist1").hide();
+                $(".comments").val($(".bloglist2 li").eq(0).attr("content"));
+                $(".formtitle").val($(".bloglist2 li").eq(0).attr("title"));
+                $(".formid").val($(".bloglist2 li").eq(0).attr("id"));
+                //- $(".comments").val($(".bloglist2").children().first().attr("content"));
+                $(".save,.publish,.delete").hide();
+                $(".unpublish").show();
+            })
+            //- 默认显示
+            $(".comments").val($(".bloglist1").children().first().attr("content"));
+            $(".formtitle").val($(".bloglist1").children().first().attr("title"));
+            $(".formid").val($(".bloglist1").children().first().attr("id"));
+            //- 点击切换
+            $(".bloglist1li,.bloglist2li").click(function(){
+                $(".comments").val($(this).attr("content"));
+                $(".formtitle").val($(this).attr("title"));
+                $(".formid").val($(this).attr("id"));
+            })
+            //- 发布
+            $(".publish").click(function(){
+                var id=$(".formid").val();
+                console.log("id:",id);
+                data={id}
+                $.post("http://127.0.0.1:3000/publish",data,function(){
+                    location.reload();
+                })
+            })
+            //- 下撤
+             $(".unpublish").click(function(){
+                var id=$(".formid").val();
+                console.log("id:",id);
+                data={id}
+                $.post("http://127.0.0.1:3000/unpublish",data,function(){
+                    location.reload();
+                })
+            })
+            //- 删除
+             $(".delete").click(function(){
+                var id=$(".formid").val();
+                console.log("id:",id);
+                data={id}
+                $.post("http://127.0.0.1:3000/delete",data,function(){
+                    location.reload();
+                })
+            })
+            //- 新建
+             $(".newblog").click(function(){
+                $.post("http://127.0.0.1:3000/newblog",function(){
+                    location.reload();
+                })
+            })
+            //- console.log("result2:",result);
+            //- for(i=0;i<)
+            //- if($())
+            //- get list
+            //- $.get("http://127.0.0.1:3000/listget",function(data){
+            //-      //- alert(1);
+            //-     console.log("init data:",data);
+            //-     console.log("data.length:",data.length);
+            //-     for(i=0;i<data.length;i++){
+            //-         //- var $li=$('li.bloglistli(data-id="'+data[i].id+'") '+data[i])
+            //-         //- var $li=$('li.bloglistli '+data[i].title+'')
+            //-         //- var $li=$('<li class="bloglistli" data-id="'+data[i].id+'">'+data[i].title+'</li>');
+            //-         var $li=$(`<li class="bloglistli" ispublish="`+data[i].ispublish+`" data-id="`+data[i].id+`"><a href='detail'>`+data[i].title+'</a></li>');
+            //-         //- var $li=$(`<li class="bloglistli"  onclick="javascript:window.location.href='detail'" >`+data[i].title+'</li>')
+            //-         var ispublish=data[i].ispublish;
+            //-         if(ispublish==0){
+            //-             $(".bloglist1").append($li);
+            //-         }else{
+            //-             $(".bloglist2").append($li);
+            //-         }
+            //-     }
+            //- })
+        })
+    
+

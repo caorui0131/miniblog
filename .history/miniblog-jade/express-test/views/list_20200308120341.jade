@@ -1,0 +1,22 @@
+extends layout
+block css
+  style(type="text/css").
+    .newbtn{display:block;}
+    .bloglist{display:block;height:100%;border:1px solid #999999;float:left;width:100%;padding:10px;margin:10px 0;}
+block content
+  include includes/header.jade 
+  h2 文章管理
+  input.newbtn(type="submit" value="新建博客" onclick="javascript:window.location.href='login'")
+  div.bloglist
+    //- li(onclick="javascript:window.location.href='detail'") 1
+    //- a(href='edit') 111
+    ul
+      each val in result
+        li.bloglistli
+          a(href="/detail?id="+val.id)=val.id+"."+val.title
+  script.
+    $(document).ready(function(){
+      //- 初始状态
+      $(".username").hide();
+      //- 判断默认状态是否为登录 
+    })

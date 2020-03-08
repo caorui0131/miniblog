@@ -1,0 +1,62 @@
+extends layout
+block css
+  style(type="text/css").
+    .newbtn{display:block;}
+    .bloglist{display:block;height:100%;border:1px solid #999999;float:left;width:100%;padding:10px;margin:10px 0;}
+block content
+  include includes/header.jade 
+  h2 文章管理
+  input.newbtn(type="submit" value="新建博客" onclick="javascript:window.location.href='login'")
+  div.bloglist
+    //- li(onclick="javascript:window.location.href='detail'") 1
+    //- a(href='edit') 111
+    ul
+      each val in result
+        li.bloglistli
+          a(href="/detail?id="+val.id)=val.id+"."+val.title
+  script.
+    $(document).ready(function(){
+      //- 初始状态
+      $(".username").hide();
+      // 调用设置cookie、取cookie函数
+        setCookie("name1","value1")
+        // setCookie("name2","value2")
+        // setCookie("name3","value3")
+        console.log("document.cookie:",document.cookie)
+        // getCookie("name");
+      // 定义取cookie函数
+        function getCookie(name){
+            var strcookie = document.cookie;//获取cookie字符串
+            // console.log("strcookie:",strcookie)
+            var arrcookie = strcookie.split("; ");//分割
+            // console.log("arrcookie:",arrcookie)
+            //遍历匹配
+            for ( var i = 0; i < arrcookie.length; i++) {
+                var arr = arrcookie[i].split("=");
+                // console.log("arr"+i+":",arr)
+                // console.log("arr.length"+i+":",arr.length)
+                if (arr[0] == name){
+                    return arr[1];
+                }
+            }
+            return "";
+        }
+        // 将cookie记录在浏览器中
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;";
+        }
+        //删除cookie
+        function deleteCookie(name){ 
+            var date=new Date(); 
+            date.setTime(date.getTime()-10000); 
+            document.cookie=name+"=v; expires="+date.toGMTString(); 
+        }
+        // deleteCookie("name1");
+      //- 判断默认是否为登录状态
+
+
+      
+    })
