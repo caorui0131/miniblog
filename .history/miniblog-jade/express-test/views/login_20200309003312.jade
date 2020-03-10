@@ -1,0 +1,45 @@
+extends layout
+block css
+    style(type="text/css").
+        .logindiv{height: 400px;width: 350px;background:ffffff; 
+        position: absolute;left: 50%;top: 50%;margin:-250px 0 0 -150px;z-index: 2;
+        box-shadow: darkgrey 10px 10px 30px 5px ;}
+        .dl{text-align: center;top: 20px;position: absolute;left: 44%;}
+        .ipt{position: absolute;top:40%;left: 28%;width:142px;}
+        .loginbtn{width: 132px;background-color: #868080;}
+        .loginusername,.password,.loginbtn{float:left;}
+        
+block content
+    include includes/header.jade
+    div.logindiv
+        p.dl 登录
+        div.ipt
+            input.username(type="text" placeholder="用户名")
+            input.password(type="password" placeholder="密码")
+            input.loginbtn(type="submit" value="登录")
+        #backurl #{backUrl}
+    script.
+        $(document).ready(function(){
+            //- 登录检验
+            login();
+            var  backurl= $('#backurl').text();
+            if(!backurl||backurl==''){
+                backurl='/list'
+            }
+            console.log('backurl:',$('#backurl').text())
+            function login(){
+                $(".loginusername").hide();
+                $(".login").show();
+                $(".loginbtn").click(function(){
+                    var username=$(".username").val();
+                    var password=$(".password").val();
+                    data={username,password,backurl};
+                    $.post("http://127.0.0.1:3000/login",data,function(data){
+                        window.location.href=data.backurl;
+                        //window.location.href='http://127.0.0.1:3000/list';
+                        //- $(location).attr("href","http://127.0.0.1:3000/list")
+                        
+                    })
+                })
+            }
+        })
